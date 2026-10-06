@@ -1,10 +1,24 @@
 # Grammar Scoring Engine
 
-A Jupyter Notebook-based project for estimating grammar scores from spoken-audio samples. The repository contains the full experimentation workflow and a generated submission file with one predicted score per audio recording.
+A Jupyter Notebook-based machine-learning project for predicting grammar scores from spoken-audio samples. The notebook develops an end-to-end scoring workflow and produces a CSV submission containing one predicted score for each audio file.
+
+## Implementation summary
+
+The implementation is contained in [`grammar-scoring-engine.ipynb`](./grammar-scoring-engine.ipynb). At a high level, the notebook:
+
+1. Loads the audio-based grammar-scoring data and organizes the available samples for modeling.
+2. Preprocesses the audio inputs so they can be used as numerical model features.
+3. Builds a supervised regression workflow to learn the relationship between speech/audio characteristics and grammar-score labels.
+4. Generates predictions for the evaluation audio files.
+5. Writes the predictions to `submission.csv` using the required `filename,label` format.
+
+The resulting labels are continuous scores. The checked-in submission includes predictions ranging from approximately `1.20` to `4.37` for the provided audio files.
+
+> The notebook is the authoritative source for the exact preprocessing, feature extraction, model configuration, and evaluation steps. Those details should be kept in sync with this README if the notebook changes.
 
 ## Repository contents
 
-- [`grammar-scoring-engine.ipynb`](./grammar-scoring-engine.ipynb) — Notebook containing the data-processing, modeling, evaluation, and prediction workflow.
+- [`grammar-scoring-engine.ipynb`](./grammar-scoring-engine.ipynb) — Complete experimentation and prediction workflow.
 - [`submission.csv`](./submission.csv) — Generated predictions with the columns `filename` and `label`.
 
 ## Output format
@@ -45,14 +59,15 @@ Then open `grammar-scoring-engine.ipynb` and run the cells from top to bottom.
 
 1. Make the required audio data available to the notebook.
 2. Open `grammar-scoring-engine.ipynb`.
-3. Run the preprocessing and inference cells.
-4. Export the predictions in the same two-column format as `submission.csv`.
+3. Run the data-loading and preprocessing cells.
+4. Run the model-training and prediction cells.
+5. Export the predictions in the same two-column format as `submission.csv`.
 
 ## Notes
 
 - This project is currently organized as a single Jupyter Notebook.
-- The checked-in CSV is an example/generated prediction submission, not the source audio dataset.
-- Model performance depends on the audio data, preprocessing steps, feature extraction, and training configuration used in the notebook.
+- The checked-in CSV is a generated prediction submission; the source audio dataset is not included in this repository.
+- Model performance depends on the audio data, preprocessing, feature extraction, and training configuration used in the notebook.
 
 ## License
 
